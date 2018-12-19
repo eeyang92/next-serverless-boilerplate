@@ -1,11 +1,12 @@
-const express = require('express')
-const path = require('path')
+import * as express from 'express'
+import * as path from 'path'
+import * as next from 'next'
+import * as pathMatch from 'path-match'
+import { parse } from 'url'
+
 const dev = process.env.NODE_ENV !== 'production'
-const next = require('next')
-const pathMatch = require('path-match')
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const { parse } = require('url')
 
 const server = express()
 const route = pathMatch()
@@ -20,5 +21,4 @@ server.get('/dogs/:breed', (req, res) => {
 })
 server.get('*', (req, res) => handle(req, res))
 
-module.exports.app = app
-module.exports.server = server
+export { app, server }

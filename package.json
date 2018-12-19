@@ -6,7 +6,7 @@
   "author": "Eric Yang",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development next-serverless",
+    "dev": "NODE_ENV=development ts-node -O '{\"module\": \"commonjs\"}' index.ts",
     "build": "next build",
     "deploy": "NODE_ENV=production next build && sls deploy"
   },
@@ -28,9 +28,12 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@types/axios": "^0.14.0",
+    "@types/express": "^4.16.0",
     "@types/next": "^7.0.5",
     "copy-webpack-plugin": "^4.6.0",
     "serverless-webpack": "^5.2.0",
+    "ts-loader": "^5.3.1",
+    "ts-node": "^7.0.1",
     "typescript": "^3.2.2",
     "webpack": "^4.27.1",
     "webpack-node-externals": "^1.7.2"
