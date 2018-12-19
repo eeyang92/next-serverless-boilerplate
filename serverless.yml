@@ -19,9 +19,19 @@ functions:
 plugins:
   - serverless-apigw-binary
   # - serverless-domain-manager
+  - serverless-webpack
 
 custom:
   secrets: ${file(secrets.json)}
+  webpack:
+    packager: 'yarn'
+    package:
+      individually: true
+    includeModules:
+      forceInclude:
+        - axios
+      forceExclude:
+        - aws-sdk
   apigwBinary:
     types:
       - '*/*'

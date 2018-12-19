@@ -3,3 +3,5 @@ node_modules
 secrets.json
 .vscode
 .serverless
+.DS_Store
+.webpack
