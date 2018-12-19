@@ -4,6 +4,7 @@
   "description": "Create a simple next.js Dog app on AWS Lambda with the Serverless Framework.",
   "main": "index.js",
   "author": "Eric Yang",
+  "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development next-serverless",
     "build": "next build",
