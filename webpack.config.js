@@ -9,9 +9,11 @@ module.exports = {
     // optimization: {
 	// 	minimize: false
 	// },
-    module: {
-      // loaders: [ ... ]
-    },
+    // module: {
+    //     rules: [
+    //         { test: /\.tsx?$/, loader: 'ts-loader', exclude: [path.resolve(__dirname, './pages/')] },
+    //     ],
+    // },
     externals: [nodeExternals()],
     plugins: [
         new CopyWebpackPlugin([{ from: './.next', to: './.next' }])

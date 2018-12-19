@@ -5,3 +5,4 @@ secrets.json
 .serverless
 .DS_Store
 .webpack
+*.log

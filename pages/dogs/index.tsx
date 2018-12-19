@@ -1,18 +1,24 @@
-import React from 'react'
+import * as React from 'react'
 import axios from 'axios'
 import Default from '../../layouts/default'
 
-class DogBreedPage extends React.Component {
-    static getInitialProps({ query: { breed } }) {
-        return { breed }
-    }
+import { Dog } from '../../types/Dog'
 
+const meta = { title: 'Dogs title', description: 'Dogs description' }
+
+type Props = {}
+
+type State = {
+    loading: boolean,
+    dogs: Dog[]
+}
+
+class DogsPage extends React.Component<Props, State> {
     constructor(props) {
         super(props)
 
         this.state = {
             loading: true,
-            meta: {},
             dogs: []
         }
 
@@ -25,23 +31,11 @@ class DogBreedPage extends React.Component {
 
     async fetchData() {
         this.setState({ loading: true })
-
-        const reg = new RegExp(this.props.breed, 'g')
-
         const { data } = await axios.get(
-            'https://api.thedogapi.com/v1/images/search?size=thumb&has_breeds=true&limit=50'
-        )
-
-        const filteredDogs = data.filter(dog =>
-            dog.breeds[0]
-                .name
-                .toLowerCase()
-                .match(reg)
+            'https://api.thedogapi.com/v1/images/search?size=thumb&limit=10'
         )
         this.setState({
-            dogs: filteredDogs,
-            breed: this.props.breed,
-            meta: { title: `Only ${this.props.breed} here!`, description: 'Cute doggies. :D' },
+            dogs: data,
             loading: false
         })
     }
@@ -60,9 +54,9 @@ class DogBreedPage extends React.Component {
 
     render() {
         return (
-            <Default meta={ this.state.meta }>
+            <Default meta={meta}>
                 <div>
-                    <h1>Dog breed: {this.props.breed}</h1>
+                    <h1>Here you have all dogs.</h1>
                     { this.renderDogList() }
                 </div>
             </Default>
@@ -70,4 +64,4 @@ class DogBreedPage extends React.Component {
     }
 }
 
-export default DogBreedPage
+export default DogsPage
